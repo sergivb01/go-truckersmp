@@ -8,14 +8,14 @@ import (
 
 func main() {
 	cli := truckersmp.NewClient(nil)
-	p, err := cli.GetPlayer("76561198057763917")
+	p, err := cli.GetPlayer(76561198057763917)
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(p)
 
 	// the example player has no bans - it will return an empty slice of bans
-	bans, err := cli.GetPlayerBans("76561198057763917")
+	bans, err := cli.GetPlayerBans(76561198057763917)
 	if err != nil {
 		fmt.Println(err)
 	}

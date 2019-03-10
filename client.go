@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 // TruckersClient defines a new client for go-TruckersMP
@@ -48,8 +49,8 @@ func (c *TruckersClient) doRequest(path string) ([]byte, error) {
 
 // GetPlayer looks up for a given player and returs the player
 // or an error if it occurs
-func (c TruckersClient) GetPlayer(p string) (*Player, error) {
-	b, err := c.doRequest("/player/" + p)
+func (c TruckersClient) GetPlayer(id int) (*Player, error) {
+	b, err := c.doRequest("/player/" + strconv.Itoa(id))
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +61,7 @@ func (c TruckersClient) GetPlayer(p string) (*Player, error) {
 	}
 
 	if res.Error {
-		return nil, fmt.Errorf("failed to lookup player %s", p)
+		return nil, fmt.Errorf("failed to lookup player %d", id)
 	}
 
 	return &res.Player, nil
@@ -68,8 +69,8 @@ func (c TruckersClient) GetPlayer(p string) (*Player, error) {
 
 // GetPlayerBans looks up for the latest 5 bans of a player and
 // returns the list of bans or an error
-func (c TruckersClient) GetPlayerBans(p string) (*[]Ban, error) {
-	b, err := c.doRequest("/bans/" + p)
+func (c TruckersClient) GetPlayerBans(id int) (*[]Ban, error) {
+	b, err := c.doRequest("/bans/" + strconv.Itoa(id))
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +81,7 @@ func (c TruckersClient) GetPlayerBans(p string) (*[]Ban, error) {
 	}
 
 	if res.Error {
-		return nil, fmt.Errorf("failed to lookup bans for player %s", p)
+		return nil, fmt.Errorf("failed to lookup bans for player %d", id)
 	}
 
 	return &res.Bans, nil
