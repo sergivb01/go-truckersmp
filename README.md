@@ -1,4 +1,4 @@
-# Go TruckersMP
+# Go TruckersMP [![GoDoc](https://godoc.org/github.com/sergivb01/go-truckersmp?status.svg)](https://godoc.org/github.com/sergivb01/go-truckersmp)
 Go-TruckersMP is a wrapper for [TruckersMP](https://truckersmp.com) multiplayer system, for Euro & American Truck Simulator.
 
 ## Documentation
