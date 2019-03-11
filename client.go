@@ -28,6 +28,9 @@ func NewClient(httpClient *http.Client) *TruckersClient {
 
 func (c *TruckersClient) doRequest(path string) ([]byte, error) {
 	req, err := http.NewRequest("GET", c.baseURL+path, nil)
+	if err != nil {
+		return nil, err
+	}
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
